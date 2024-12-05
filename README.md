@@ -32,6 +32,8 @@ bash
  
 cd frontend
 npm install
+
+
 Backend:
 
 Navigate to the backend directory:
