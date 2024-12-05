@@ -42,6 +42,8 @@ bash
  
 cd backend
 npm install
+
+
 3. Environment Variables
 Create a .env file in the backend directory and add the following environment variables:
 
