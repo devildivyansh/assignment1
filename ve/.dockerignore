@@ -1,0 +1,12 @@
+node_modules
+/dist
+/.vscode
+.git
+.gitignore
+Dockerfile
+.dockerignore
+README.md
+
+
+<!-- docker build -t react-vite-assignment1 . -->
+<!-- docker run -p 3000:3000 react-vite-assignment1 -->
