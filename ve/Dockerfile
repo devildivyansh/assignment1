@@ -1,24 +1,24 @@
-# Step 1: Use an official Node.js image as the base image
-FROM node:18-slim
+# Use Node.js base image for building the frontend
+FROM node:16-alpine AS build
 
-# Step 2: Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Step 3: Copy package.json and package-lock.json to the container
+# Copy package files and install dependencies
 COPY package*.json ./
-
-# Step 4: Install dependencies inside the container
 RUN npm install
 
-# Step 5: Copy the rest of the application code
+# Copy the rest of the code
 COPY . .
 
-# Step 6: Build the application for production
+# Build the app
 RUN npm run build
 
-# Step 7: Expose the port the app will run on
-EXPOSE 3000
+# Serve the app with Nginx
+FROM nginx:1.21-alpine
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Step 8: Set the command to run the application
-CMD ["npm", "run", "preview"]
-    
+# Expose the frontend port (e.g., 80)
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
